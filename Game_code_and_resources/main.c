@@ -5,10 +5,10 @@
 
 char sq[10]={'0','1','2','3','4','5','6','7','8','9'};
 char sqcheck[10]={'0','1','2','3','4','5','6','7','8','9'};
-int checkwin();
-void board();
-void change(int,char,int);
-int checkline (int,int,int);
+int checkwin();		// checkwin() function wheather player 1 or player 2 won or the game draw.
+void board();		// board() function always print the updated board.
+void change(int,char,int);		// change() function updte the charecter according to the players choice.
+int checkline (int,int,int);	// checkline() function checks the validation condition to win.	
 
 int main ()
 {
@@ -19,6 +19,7 @@ int main ()
 	do
 	{
 
+        clrscr();
 		board();
 		player = (player % 2) ? 1 : 2;
 		if (player == 1)
@@ -30,6 +31,7 @@ int main ()
 		change(choice,mark,player);
 		i=checkwin();
 		player++;
+
 	}while(i == -1);
 
 	board();
@@ -39,7 +41,9 @@ int main ()
 		printf("Player %d WON!!!!",--player);
 	}
 	else if (i == 0)
+	{
 		printf("Game Draw!!");
+	}
 	return 0;
 }
 
@@ -56,18 +60,6 @@ void change(int c, char markc, int playerc)
 
 }
 
-int checkline(int b1, int b2, int b3)
-{
-	if (sq[b1]==sq[b2] && sq[b2]==sq[b3])
-	{
-		return 1;
-	}
-	else if (sq[1]!=sqcheck[1] && sq[2]!=sqcheck[2] && sq[3]!=sqcheck[3] && sq[4]!=sqcheck[4] && sq[5]!=sqcheck[5] && sq[6]!=sqcheck[6] && sq[7]!=sqcheck[7] && sq[8]!=sqcheck[8] && sq[9]!=sqcheck[9])
-	{
-		return 0;
-	}
-}
-
 
 int checkwin()
 {
@@ -76,12 +68,33 @@ int checkwin()
 	for (j=0;j<8;j++)
 	{
 		r=checkline(a2[j][0],a2[j][1],a2[j][2]);
+		if (r==1)
+        {
+            return r;
+        }
 	}
-	return r;
+	if (sq[1]!=sqcheck[1] && sq[2]!=sqcheck[2] && sq[3]!=sqcheck[3] && sq[4]!=sqcheck[4] && sq[5]!=sqcheck[5] && sq[6]!=sqcheck[6] && sq[7]!=sqcheck[7] && sq[8]!=sqcheck[8] && sq[9]!=sqcheck[9])
+	{
+		return 0;
+	}
+	else
+	{
+		return -1;
+	}
 
 }
 
-
+int checkline(int b1, int b2, int b3)
+{
+	if (sq[b1]==sq[b2] && sq[b2]==sq[b3])
+	{
+		return 1;
+	}
+	else
+    {
+        return -1;
+    }
+}
 
 void board()
 {
