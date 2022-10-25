@@ -8,7 +8,7 @@ char sqcheck[10]={'0','1','2','3','4','5','6','7','8','9'};
 int checkwin();		// checkwin() function wheather player 1 or player 2 won or the game draw.
 void board();		// board() function always print the updated board.
 void change(int,char,int);		// change() function updte the charecter according to the players choice.
-int checkline (int,int,int);	// checkline() function checks the validation condition to win.	
+int checkline (int,int,int);	// checkline() function checks the validation condition to win.
 
 int main ()
 {
@@ -18,8 +18,6 @@ int main ()
 	i = -1;
 	do
 	{
-
-        clrscr();
 		board();
 		player = (player % 2) ? 1 : 2;
 		if (player == 1)
